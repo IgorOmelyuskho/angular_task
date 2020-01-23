@@ -1,0 +1,33 @@
+<mat-card class="product-card">
+  <div class="product-card">
+    <div class="number-and-checkbox">
+      <span>№ {{product.number}} </span>
+      <span>
+        <mat-checkbox [checked]="product.selected" (change)="checkedChange($event)">Select</mat-checkbox>
+      </span>
+    </div>
+    <div class="name">Name: {{product.name}}</div>
+    <div class="price">Price: {{product.price | decimalComa}}</div>
+    <button class="btn btn-primary" (click)="edit()">Edit</button>
+    <div class="description-container">
+      <mat-accordion class="example-headers-align">
+        <mat-expansion-panel (closed)="close()" (opened)="open()" hideToggle>
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              <div *ngIf="!opened" class="short-description">
+                {{product.description}}
+              </div>
+              <div>
+                <button class="btn btn-primary" *ngIf="opened">Hide</button>
+                <button class="btn btn-primary ml-1" *ngIf="!opened">Detailed</button>
+              </div>
+            </mat-panel-title>
+          </mat-expansion-panel-header>
+          <div class="full-description">
+            {{product.description}}
+          </div>
+        </mat-expansion-panel>
+      </mat-accordion>
+    </div>
+  </div>
+</mat-card>

@@ -1,0 +1,28 @@
+<div class="container">
+  <div class="row">
+    <div class="col">
+      <section class="user">
+        <div>Email: {{user?.email}}</div>
+        <div>User name: {{user?.name}}</div>
+        <button (click)="editProfile()" class="btn btn-primary">Settings</button>
+        <button (click)="logout()" class="btn btn-primary">Logout</button>
+      </section>
+
+      <hr>
+
+      <section class="products-list">
+        <button class="btn btn-success mb-1" (click)="createProduct()">Create product</button>
+        <button class="btn btn-danger" (click)="removeSelected()">Remove selected</button>
+        <div>Products count: {{productsArr?.length}}</div>
+
+        <mat-paginator *ngIf="productsArr?.length > 0" [length]="productsArr.length" [pageSize]="pageSize"
+          [pageSizeOptions]="pageSizeOptions" (page)="pageEvent($event)">
+        </mat-paginator>
+
+        <div class="product-card-wrapper" *ngFor="let product of productsArrForPaginator">
+          <app-product-card (selectProduct)="selectProduct($event)" [product]="product"></app-product-card>
+        </div>
+      </section>
+    </div>
+  </div>
+</div>

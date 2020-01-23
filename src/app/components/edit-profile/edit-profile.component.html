@@ -1,0 +1,43 @@
+<div class="container">
+  <div class="row">
+    <div class="col">
+      <form [formGroup]="editProfileForm" (ngSubmit)="onSubmit()">
+        <div class="form-group">
+          <input placeholder="Name" type="text" formControlName="name" class="form-control"
+            [ngClass]="{ 'is-invalid': submitted && formControls.name.errors }" />
+          <div *ngIf="submitted && formControls.name.errors" class="invalid-feedback">
+            <div *ngIf="formControls.name.errors.maxlength">Maximum name length no more than
+              {{FormHelper.userNameMaxLength}} characters</div>
+          </div>
+        </div>
+        <div class="form-group">
+          <input placeholder="Last name" type="text" formControlName="lastName" class="form-control"
+            [ngClass]="{ 'is-invalid': submitted && formControls.lastName.errors }" />
+          <div *ngIf="submitted && formControls.lastName.errors" class="invalid-feedback">
+            <div *ngIf="formControls.lastName.errors.maxlength">Maximum last name length no more than
+              {{FormHelper.userLastNameMaxLength}} characters</div>
+          </div>
+        </div>
+        <div class="form-group">
+          <input placeholder="Email" type="email" formControlName="email" class="form-control"
+            [ngClass]="{ 'is-invalid': submitted && formControls.email.errors }" />
+          <div *ngIf="submitted && formControls.email.errors" class="invalid-feedback">
+            <div *ngIf="formControls.email.errors.required">Email is required</div>
+            <div *ngIf="formControls.email.errors.pattern">Email address must be valid</div>
+          </div>
+        </div>
+        <div class="form-group">
+          <input placeholder="Phone" [textMask]="{mask: FormHelper.phoneMask}" type="phone" formControlName="phone" class="form-control"
+            [ngClass]="{ 'is-invalid': submitted && formControls.phone.errors }" />
+          <div *ngIf="submitted && formControls.phone.errors" class="invalid-feedback">
+            <div *ngIf="formControls.phone.errors.pattern">Phone must be valid</div>
+          </div>
+        </div>
+        <div class="form-group">
+          <button [disabled]="submitted && !editProfileForm.valid" class="btn btn-success">Save</button>
+        </div>
+        <button (click)="changePassword()" type="button" class="btn btn-success">Change password</button>
+      </form>
+    </div>
+  </div>
+</div>

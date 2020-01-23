@@ -1,0 +1,15 @@
+.product-card {
+  margin: 10px;
+
+  .description-container {
+    .mat-expansion-panel-header-title {
+      width: calc(100% - 20px);
+    }
+
+    .short-description {
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+  }
+}

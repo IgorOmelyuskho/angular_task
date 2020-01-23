@@ -1,0 +1,33 @@
+<div class="container">
+  <div class="row">
+    <div class="col">
+      <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+        <div class="form-group">
+          <input placeholder="Email" type="email" formControlName="email" class="form-control"
+            [ngClass]="{ 'is-invalid': submitted && formControls.email.errors }" />
+          <div *ngIf="submitted && formControls.email.errors" class="invalid-feedback">
+            <div *ngIf="formControls.email.errors.required">Email required</div>
+            <div *ngIf="formControls.email.errors.pattern">Email address must be valid</div>
+          </div>
+        </div>
+        <div class="form-group">
+          <input placeholder="Password" autocomplete="on" type="password" formControlName="password"
+            class="form-control" [ngClass]="{ 'is-invalid': submitted && formControls.password.errors }" />
+          <div *ngIf="submitted && formControls.password.errors" class="invalid-feedback">
+            <div *ngIf="formControls.password.errors.required">Password required</div>
+            <div *ngIf="formControls.password.errors.minlength">Password must contain at least
+              {{FormHelper.passwordMinLength}} characters</div>
+            <div *ngIf="formControls.password.errors.maxlength">Password must contain no more than
+              {{FormHelper.passwordMaxLength}} characters</div>
+            <div *ngIf="formControls.password.errors.pattern">Password must contain uppercase and lowercase characters
+              and numbers
+            </div>
+          </div>
+        </div>
+        <div class="form-group">
+          <button [disabled]="submitted && !loginForm.valid" class="btn btn-success">Login</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

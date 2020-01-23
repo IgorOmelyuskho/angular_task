@@ -1,0 +1,37 @@
+<div class="container">
+  <div class="row">
+    <div class="col">
+      <h3>Create product</h3>
+      <form [formGroup]="createProductForm" (ngSubmit)="onSubmit()">
+        <div class="form-group">
+          <input placeholder="Product name" type="text" formControlName="name" class="form-control"
+            [ngClass]="{ 'is-invalid': submitted && formControls.name.errors }" />
+          <div *ngIf="submitted && formControls.name.errors" class="invalid-feedback">
+            <div *ngIf="formControls.name.errors.required">Enter product name</div>
+            <div *ngIf="formControls.name.errors.maxlength">Product name must not be longer
+              {{FormHelper.productNameMaxLength}} characters</div>
+          </div>
+        </div>
+        <div class="form-group">
+          <input placeholder="Enter product price" type="number" formControlName="price" class="form-control"
+            [ngClass]="{ 'is-invalid': submitted && formControls.price.errors }" />
+          <div *ngIf="submitted && formControls.price.errors" class="invalid-feedback">
+            <div *ngIf="formControls.price.errors.required">Enter product price</div>
+          </div>
+        </div>
+        <div class="form-group">
+          <textarea placeholder="Product description" type="text" formControlName="description" class="form-control"
+            [ngClass]="{ 'is-invalid': submitted && formControls.description.errors }"></textarea>
+          <div *ngIf="submitted && formControls.description.errors" class="invalid-feedback">
+            <div *ngIf="formControls.description.errors.required">Enter product description</div>
+            <div *ngIf="formControls.description.errors.maxlength">Product Description Must Not Be Longer
+              {{FormHelper.productNameMaxLength}} characters</div>
+          </div>
+        </div>
+        <div class="form-group">
+          <button [disabled]="submitted && !createProductForm.valid" class="btn btn-success">Create</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
