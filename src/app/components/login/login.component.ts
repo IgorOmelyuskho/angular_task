@@ -22,14 +22,15 @@ export class LoginComponent implements OnInit {
     private toastService: ToastService
   ) {
     this.loginForm = this.formBuilder.group({
-      email: ['email@email.com', [Validators.required, Validators.pattern(FormHelper.emailPattern)]],
-      password: ['123QWEqwe',
+      email: ['', [Validators.required, Validators.pattern(FormHelper.emailPattern)]],
+      password: ['',
         [
           Validators.required,
           Validators.minLength(FormHelper.passwordMinLength),
           Validators.maxLength(FormHelper.passwordMaxLength),
           Validators.pattern(FormHelper.passwordPattern)
         ]],
+        rememberMe: [false]
     });
   }
 

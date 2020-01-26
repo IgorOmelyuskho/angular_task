@@ -11,7 +11,7 @@
     <button class="btn btn-primary" (click)="edit()">Edit</button>
     <div class="description-container">
       <mat-accordion class="example-headers-align">
-        <mat-expansion-panel (closed)="close()" (opened)="open()" hideToggle>
+        <mat-expansion-panel #expansion_panel (closed)="close()" (opened)="open(expansion_panel)" hideToggle>
           <mat-expansion-panel-header>
             <mat-panel-title>
               <div *ngIf="!opened" class="short-description">

@@ -19,6 +19,7 @@ export class IndexComponent implements OnInit, OnDestroy {
   pageSizeOptions: number[] = [10, 20, 50];
   pageSize = this.pageSizeOptions[0];
   pageIndex = 0;
+  lastOpenedExpansionPanel: any;
 
   constructor(
     private authService: AuthorizationService,
@@ -103,6 +104,13 @@ export class IndexComponent implements OnInit, OnDestroy {
     this.pageIndex = e.pageIndex;
     this.pageSize = e.pageSize;
     this.refreshProductsArrForPaginator();
+  }
+
+  openDescription(e) {
+    if (this.lastOpenedExpansionPanel != null && this.lastOpenedExpansionPanel !== e) {
+      this.lastOpenedExpansionPanel.close();
+    }
+    this.lastOpenedExpansionPanel = e;
   }
 
   ngOnDestroy() {

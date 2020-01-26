@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter, AfterViewInit, ViewChild } from '@angular/core';
 import { Product } from 'src/app/models/product';
 import { Router } from '@angular/router';
 
@@ -10,6 +10,7 @@ import { Router } from '@angular/router';
 export class ProductCardComponent implements OnInit {
   @Input() product: Product;
   @Output() selectProduct: EventEmitter<Product> = new EventEmitter(null);
+  @Output() openDescription: EventEmitter<boolean> = new EventEmitter(null);
   opened = false;
 
   constructor(private router: Router) { }
@@ -17,8 +18,9 @@ export class ProductCardComponent implements OnInit {
   ngOnInit() {
   }
 
-  open() {
+  open(e) {
     this.opened = true;
+    this.openDescription.emit(e);
   }
 
   close() {

@@ -11,8 +11,8 @@
       <hr>
 
       <section class="products-list">
-        <button class="btn btn-success mb-1" (click)="createProduct()">Create product</button>
-        <button class="btn btn-danger" (click)="removeSelected()">Remove selected</button>
+        <button class="btn btn-success mb-1 w-150" (click)="createProduct()">Create product</button>
+        <button class="btn btn-danger w-150" (click)="removeSelected()">Remove selected</button>
         <div>Products count: {{productsArr?.length}}</div>
 
         <mat-paginator *ngIf="productsArr?.length > 0" [length]="productsArr.length" [pageSize]="pageSize"
@@ -20,7 +20,7 @@
         </mat-paginator>
 
         <div class="product-card-wrapper" *ngFor="let product of productsArrForPaginator">
-          <app-product-card (selectProduct)="selectProduct($event)" [product]="product"></app-product-card>
+          <app-product-card (openDescription)="openDescription($event)" (selectProduct)="selectProduct($event)" [product]="product"></app-product-card>
         </div>
       </section>
     </div>
