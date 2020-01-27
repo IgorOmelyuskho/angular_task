@@ -52,6 +52,7 @@ export class AuthorizationService {
 
   logout() {
     localStorage.setItem('email', null);
+    this.user$.next(null);
     this.router.navigate(['login']);
   }
 }
